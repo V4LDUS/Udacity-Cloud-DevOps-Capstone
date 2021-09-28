@@ -1,3 +1,9 @@
+#app.py is responsible for:
+
+#1)Accepting an input JSON payload, and converting that into a DataFrame.
+#2)Scaling the DataFrame payload.
+#3)Passing the scaled data to a pre-trained model and getting back a prediction.
+
 from flask import Flask, request, jsonify
 from flask.logging import create_logger
 import logging
@@ -63,6 +69,7 @@ def predict():
     # get an output prediction from the pretrained model, clf
     prediction = list(clf.predict(scaled_payload))
     # TO DO:  Log the output prediction value
+    LOG.info(f"Prediction value: \n{prediction}")
     return jsonify({'prediction': prediction})
 
 if __name__ == "__main__":
