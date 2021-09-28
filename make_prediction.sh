@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#This shell script is responsible for sending some input data to your containerized application via the appropriate port.
+
 PORT=8000
 echo "Port: $PORT"
 
