@@ -1,4 +1,4 @@
-[![V4LDUS](https://circleci.com/gh/V4LDUS/<CloudDevOps-Project4>.svg?style=svg)](https://app.circleci.com/pipelines/github/V4LDUS/CloudDevOps-Project4)
+{<img src="https://circleci.com/gh/V4LDUS/CloudDevOps-Project4.svg?style=svg" alt="V4LDUS" />}[https://circleci.com/gh/V4LDUS/CloudDevOps-Project4]
 
 ## Project Overview
 
