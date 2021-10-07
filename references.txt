@@ -7,3 +7,12 @@ https://circleci.com/developer/orbs/orb/circleci/aws-eks
 https://circleci.com/docs/2.0/configuration-cookbook/
 
 https://www.youtube.com/watch?v=p6xDCz00TxU
+
+
+
+
+
+
+Circleci pipeline:
+
+https://app.circleci.com/pipelines/github/V4LDUS/Udacity-Cloud-DevOps-Capstone
