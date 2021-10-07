@@ -44,6 +44,8 @@ jobs:
           ssh-public-key: ''
           #Reference: https://knowledge.udacity.com/questions/687026
 
+#_______________________________________________________________________________________#
+
   lint:
     docker: 
       - image: python:3.7.3-stretch
@@ -130,17 +132,16 @@ workflows:
       #- lint
       #- build-docker-image:
       #    requires: [lint]
-      #- create-small-cluster:
-      #    cluster-name: capstone
-      #    requires:
-      #      - build-docker-image
+      - create-small-cluster:
+          cluster-name: test-capstone
       #- aws-eks/create-cluster:
       #    cluster-name: capstone
       #    aws-region: ${AWS_REGION}
       - create-deployment:
           cluster-name: capstone
           aws-region: us-east-1
-      #    requires:
+          requires:
+            - create-small-cluster
       #      - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: capstone
