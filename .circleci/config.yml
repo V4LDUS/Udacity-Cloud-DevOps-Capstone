@@ -141,7 +141,6 @@ workflows:
           cluster-name: capstone
           aws-region: us-east-1
           requires:
-            - build-docker-image
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: capstone
