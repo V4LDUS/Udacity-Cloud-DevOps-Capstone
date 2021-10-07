@@ -1,0 +1,9 @@
+https://github.com/andresaaap/simple-html-rolling-update-kubernetes
+
+https://andresaaap.medium.com/how-to-configure-and-execute-a-rolling-update-strategy-in-kubernetes-5e662be968b
+
+https://circleci.com/developer/orbs/orb/circleci/aws-eks
+
+https://circleci.com/docs/2.0/configuration-cookbook/
+
+https://www.youtube.com/watch?v=p6xDCz00TxU
