@@ -38,3 +38,23 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
+            
+################################# BUILDING PHASE #################################
+
+  build-docker-image:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build --tag=capstone .
+            docker image ls
+      - run:
+          name: Push Docker image into Docker Hub
+          command: |
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+            dockerpath=v4ldus/capstone
+            docker tag capstone $dockerpath
+            echo "Docker ID and Image: $dockerpath"
+            docker push $dockerpath
