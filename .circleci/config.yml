@@ -1,9 +1,8 @@
 version: 2.1
 
 orbs:
-  aws-eks: circleci/aws-eks@1.1.0
-  kubernetes: circleci/kubernetes@0.12.0
-  aws-cli: circleci/aws-cli@2.0.3
+  aws-eks: circleci/aws-eks@0.2.3
+  kubernetes: circleci/kubernetes@0.4.0
 
 jobs:
 
@@ -78,6 +77,7 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
+            deactivate
             
 #_______________________________________________________________________________________#
 
@@ -121,38 +121,40 @@ jobs:
           install-kubectl: true
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
-          resource-file-path: k8s/deployment.yml
-          resource-name: deployment/test-capstone
+          resource-file-path: deployment.yml
+          resource-name: deployment/capstone-project
             
 #_______________________________________________________________________________________#
 
 workflows:
   default:
     jobs:
-      #- lint
-      #- build-docker-image:
-      #    requires: [lint]
-      - create-small-cluster:
-          cluster-name: test-capstone
-      #- aws-eks/create-cluster:
+      - lint
+      - build-docker-image:
+          requires: [lint]
+      #- create-small-cluster:
       #    cluster-name: capstone
-      #    aws-region: ${AWS_REGION}
+      - aws-eks/create-cluster:
+          cluster-name: capstone
+          aws-region: ${AWS_REGION}
+          requires:
+            - build-docker-image
       - create-deployment:
           cluster-name: capstone
           aws-region: us-east-1
           requires:
-            - create-small-cluster
-      #      - aws-eks/create-cluster
+      #      - create-small-cluster
+            - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: capstone
           aws-region: ${AWS_REGION}
           container-image-updates: "capstone=capstone:latest"
           post-steps:
             - kubernetes/delete-resource:
-                resource-names: test-capstone
+                resource-names: capstone-project
                 resource-types: deployment
                 wait: true
           record: true
           requires:
             - create-deployment
-          resource-name: deployment/test-capstone
+          resource-name: deployment/capstone-project
