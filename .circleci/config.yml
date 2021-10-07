@@ -58,3 +58,15 @@ jobs:
             docker tag capstone $dockerpath
             echo "Docker ID and Image: $dockerpath"
             docker push $dockerpath
+            
+            
+            
+            
+#################################    Workflow    #################################
+
+workflows:
+    default:
+        jobs:
+          - lint
+          - build-docker-image:
+              requires: [lint]
