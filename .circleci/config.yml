@@ -143,7 +143,8 @@ workflows:
           cluster-name: capstone
           aws-region: ${AWS_REGION}
           requires:
-            - aws-eks/create-cluster
+             - build-docker-image
+      #      - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: capstone
           aws-region: ${AWS_REGION}
