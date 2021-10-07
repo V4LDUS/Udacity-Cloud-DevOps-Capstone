@@ -22,7 +22,7 @@ The deployment type used for this project was the rolling deployment.
 
 ---
 
-## Environment Variables Needed\
+## Environment Variables Needed
 
 You'll need:\
 *`AWS_ACCESS_KEY_ID`\
