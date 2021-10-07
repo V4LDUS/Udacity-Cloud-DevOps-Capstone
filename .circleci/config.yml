@@ -94,15 +94,15 @@ workflows:
           requires: [lint]
       - aws-eks/create-cluster:
           cluster-name: capstone
-          aws-region: us-east-1
+          aws-region: ${AWS_REGION}
       - create-deployment:
           cluster-name: capstone
-          aws-region: us-east-1
+          aws-region: ${AWS_REGION}
           requires:
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: capstone
-          aws-region: us-east-1
+          aws-region: ${AWS_REGION}
           container-image-updates: "capstone=capstone:latest"
           post-steps:
             - kubernetes/delete-resource:
