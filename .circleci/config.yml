@@ -87,29 +87,29 @@ jobs:
 #_______________________________________________________________________________________#
 
 workflows:
-    default:
-        jobs:
-          - lint
-          - build-docker-image:
-              requires: [lint]
-          - aws-eks/create-cluster:
-             cluster-name: capstone
-             aws-region: us-east-1
-          - create-deployment:
-            cluster-name: capstone
-            aws-region: us-east-1
-            requires:
-              - aws-eks/create-cluster
-          - aws-eks/update-container-image:
-             cluster-name: capstone
-             aws-region: us-east-1
-             container-image-updates: 'capstone=capstone:latest'
-             post-steps:
-               - kubernetes/delete-resource:
-                   resource-names: capstone
-                   resource-types: deployment
-                   wait: true
-             record: true
-             requires:
-              - create-deployment
-             resource-name: deployment/capstone
+  default:
+    jobs:
+      - lint
+      - build-docker-image:
+          requires: [lint]
+      - aws-eks/create-cluster:
+          cluster-name: capstone
+          aws-region: us-east-1
+      - create-deployment:
+          cluster-name: capstone
+          aws-region: us-east-1
+          requires:
+            - aws-eks/create-cluster
+      - aws-eks/update-container-image:
+          cluster-name: capstone
+          aws-region: us-east-1
+          container-image-updates: "capstone=capstone:latest"
+          post-steps:
+            - kubernetes/delete-resource:
+                resource-names: capstone
+                resource-types: deployment
+                wait: true
+          record: true
+          requires:
+            - create-deployment
+          resource-name: deployment/capstone
