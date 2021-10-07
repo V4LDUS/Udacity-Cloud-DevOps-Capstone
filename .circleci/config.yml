@@ -130,17 +130,14 @@ workflows:
       #      - build-docker-image
       - aws-eks/create-cluster:
           cluster-name: capstone
-          aws-region: ${AWS_REGION}
       #    requires:
       #      - create-small-cluster
       - create-deployment:
           cluster-name: capstone
-          aws-region: ${AWS_REGION}
           requires:
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: capstone
-          aws-region: ${AWS_REGION}
           container-image-updates: "capstone=capstone:latest"
           post-steps:
             - kubernetes/delete-resource:
